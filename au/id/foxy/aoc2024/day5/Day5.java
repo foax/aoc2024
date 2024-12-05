@@ -10,8 +10,8 @@ public class Day5 {
         Path filePath = Paths.get("day5_input.txt");
         try {
             var safetyManualCollection = new SafetyManualCollection(filePath);
-            System.out.println(safetyManualCollection);
             System.out.println("Part 1: " + safetyManualCollection.checkPageOrdering());
+            System.out.println("Part 2: " + safetyManualCollection.orderIncorrectPages());
         } catch (IOException e) {
             e.printStackTrace();
             System.exit(1);
