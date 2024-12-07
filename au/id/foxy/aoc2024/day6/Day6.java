@@ -15,14 +15,12 @@ public class Day6 {
             List<String> lines = Files.readAllLines(filePath);   
             var floorMap = new FloorMap(lines);
             var part1 = floorMap.countGuardPositions();
+            var part2 = floorMap.getPhantomObstacleCount();
             System.out.println("Part 1: " + part1 );
+            System.out.println("Part 2: " + part2 );
         } catch (IOException e) {
             e.printStackTrace();
             System.exit(1);
         }
-
-
-
-
     }
 }
