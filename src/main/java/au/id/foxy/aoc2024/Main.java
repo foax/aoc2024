@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 import au.id.foxy.aoc2024.day1.Day1;
 import au.id.foxy.aoc2024.day2.Day2;
 import au.id.foxy.aoc2024.day3.Day3;
+import au.id.foxy.aoc2024.day4.Day4;
 
 public class Main {
     public static void main(String[] args) {
@@ -35,6 +36,9 @@ public class Main {
                     break;
                 case "day3":
                     day = new Day3(filePath);
+                    break;
+                case "day4":
+                    day = new Day4(filePath);
                     break;
                 default:
                     System.err.println("ERROR: No handler for " + args[0]);
