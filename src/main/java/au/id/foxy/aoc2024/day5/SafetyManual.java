@@ -1,16 +1,14 @@
 package au.id.foxy.aoc2024.day5;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class SafetyManual {
     private List<Integer> pageList;
 
     public SafetyManual(String pageString) {
-        this.pageList = new ArrayList<>();
-        String[] parts = pageString.split(",");
-        for (String x : parts)
-            this.pageList.add(Integer.parseInt(x));
+        this.pageList = Arrays.stream(pageString.split(",")).map(Integer::parseInt).collect(Collectors.toList());
     }
 
     public int getMiddlePage() {

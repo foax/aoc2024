@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import au.id.foxy.aoc2024.AdventOfCode;
+import au.id.foxy.aoc2024.AdventOfCodePart;
 
 public class Day2 implements AdventOfCode {
     private List<List<Integer>> numberList;
@@ -45,16 +46,19 @@ public class Day2 implements AdventOfCode {
         return safe;
     }
 
-    public String part1() {
+    public AdventOfCodePart part1() {
+        var part = new AdventOfCodePart();
         int count = 0;
         for (var report : this.numberList) {
             if (checkReport(report))
                 count++;
         }
-        return String.valueOf(count);
+        part.setOutput(String.valueOf(count));
+        return part;
     }
 
-    public String part2() {
+    public AdventOfCodePart part2() {
+        var part = new AdventOfCodePart();
         int count = 0;
         for (var report : this.numberList) {
             if (checkReport(report)) {
@@ -70,7 +74,8 @@ public class Day2 implements AdventOfCode {
                 }
             }
         }
-        return String.valueOf(count);        
+        part.setOutput(String.valueOf(count));
+        return part;
     }
 
 }

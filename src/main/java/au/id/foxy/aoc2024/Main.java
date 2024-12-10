@@ -8,9 +8,16 @@ import au.id.foxy.aoc2024.day1.Day1;
 import au.id.foxy.aoc2024.day2.Day2;
 import au.id.foxy.aoc2024.day3.Day3;
 import au.id.foxy.aoc2024.day4.Day4;
+import au.id.foxy.aoc2024.day5.Day5;
+import au.id.foxy.aoc2024.day6.Day6;
 
 public class Main {
+    private static double ms(long duration) {
+        return duration / 1_000_000.0;
+    }
+
     public static void main(String[] args) {
+        long startTime = System.nanoTime();
         String filename;
         Path filePath;
         AdventOfCode day = null;
@@ -40,11 +47,21 @@ public class Main {
                 case "day4":
                     day = new Day4(filePath);
                     break;
+                case "day5":
+                    day = new Day5(filePath);
+                    break;
+                case "day6":
+                    day = new Day6(filePath);
+                    break;
                 default:
                     System.err.println("ERROR: No handler for " + args[0]);
                     System.exit(1);
             }
-            System.out.printf("%s: Part 1: %s; Part 2: %s\n", args[0], day.part1(), day.part2());
+
+            var part1 = day.part1();
+            var part2 = day.part2();
+            System.out.printf("%s: Part 1: %s (%.2f ms); Part 2: %s (%.2f ms)\n", args[0], part1.getOutput(), ms(part1.getDuration()), part2.getOutput(), ms(part2.getDuration()));
+            System.out.printf("Total duration: %.2f ms\n", ms(System.nanoTime() - startTime));
         } catch (IOException e) {
             e.printStackTrace();
             System.exit(1);

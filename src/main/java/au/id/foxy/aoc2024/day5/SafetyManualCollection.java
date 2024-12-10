@@ -3,17 +3,12 @@ package au.id.foxy.aoc2024.day5;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
-// import java.util.stream.Collectors;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 
 public class SafetyManualCollection {
     private List<SafetyManual> safetyManuals = new ArrayList<>();
     private SafetyManualRules safetyManualRules;
 
-    public SafetyManualCollection(Path filePath) throws IOException {
-        List<String> lines = Files.readAllLines(filePath);
+    public SafetyManualCollection(List<String> lines) {
         List<String> pageRules = new ArrayList<>();
         for (String line : lines) {
             if (Pattern.matches("^\\d+\\|\\d+$", line))

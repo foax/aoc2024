@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
 import au.id.foxy.aoc2024.AdventOfCode;
+import au.id.foxy.aoc2024.AdventOfCodePart;
 
 public class Day3 implements AdventOfCode {
     private String inputString;
@@ -15,16 +16,19 @@ public class Day3 implements AdventOfCode {
         this.inputString = new String(Files.readAllBytes(filePath));
     }
 
-    public String part1() {
+    public AdventOfCodePart part1() {
+        var part = new AdventOfCodePart();
         int result = 0;
         var pattern = Pattern.compile("mul\\((\\d+),(\\d+)\\)", Pattern.DOTALL);
         var matcher = pattern.matcher(this.inputString);
         while (matcher.find())
             result += Integer.parseInt(matcher.group(1)) * Integer.parseInt(matcher.group(2));
-        return String.valueOf(result);
+        part.setOutput(String.valueOf(result));
+        return part;
     }
 
-    public String part2() {
+    public AdventOfCodePart part2() {
+        var part = new AdventOfCodePart();
         long result = 0;
         var mulPattern = Pattern.compile("mul\\((\\d+),(\\d+)\\)", Pattern.DOTALL);
         var dontPattern = Pattern.compile("(.*?)don't\\(\\).*?do\\(\\)(.*)", Pattern.DOTALL);
@@ -53,6 +57,7 @@ public class Day3 implements AdventOfCode {
         while (matcher.find()) {
             result += Integer.parseInt(matcher.group(1)) * Integer.parseInt(matcher.group(2));
         }
-        return String.valueOf(result);
+        part.setOutput(String.valueOf(result));
+        return part;
     }
 }

@@ -1,6 +1,7 @@
 package au.id.foxy.aoc2024.day1;
 
 import au.id.foxy.aoc2024.AdventOfCode;
+import au.id.foxy.aoc2024.AdventOfCodePart;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -25,7 +26,8 @@ public class Day1 implements AdventOfCode {
             .collect(Collectors.toList());
     }
     
-    public String part1() {
+    public AdventOfCodePart part1() {
+        var part = new AdventOfCodePart();
         int score = 0;
         List<List<Integer>> sortedIds = this.locationIds.stream()
             .map(innerList -> innerList.stream()
@@ -37,10 +39,12 @@ public class Day1 implements AdventOfCode {
         for (int idx = 0; idx < sortedIds.get(0).size(); idx++)
             score += Math.abs(sortedIds.get(0).get(idx) - sortedIds.get(1).get(idx));
 
-        return String.valueOf(score);
+        part.setOutput(String.valueOf(score));
+        return part;
     }
 
-    public String part2() {
+    public AdventOfCodePart part2() {
+        var part = new AdventOfCodePart();
         int score = 0;
         Map<Integer, Long> locationFrequency = this.locationIds.get(1).stream()
             .collect(Collectors.groupingBy(
@@ -51,6 +55,7 @@ public class Day1 implements AdventOfCode {
         for (Integer id : locationIds.get(0))
             score += id * locationFrequency.getOrDefault(id, 0L);
         
-        return String.valueOf(score);
+        part.setOutput(String.valueOf(score));
+        return part;
     }
 }
