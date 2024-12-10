@@ -10,6 +10,7 @@ import au.id.foxy.aoc2024.day3.Day3;
 import au.id.foxy.aoc2024.day4.Day4;
 import au.id.foxy.aoc2024.day5.Day5;
 import au.id.foxy.aoc2024.day6.Day6;
+import au.id.foxy.aoc2024.day8.Day8;
 
 public class Main {
     private static double ms(long duration) {
@@ -52,6 +53,9 @@ public class Main {
                     break;
                 case "day6":
                     day = new Day6(filePath);
+                    break;
+                case "day8":
+                    day = new Day8(filePath);
                     break;
                 default:
                     System.err.println("ERROR: No handler for " + args[0]);
