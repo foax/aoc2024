@@ -6,6 +6,7 @@ import java.nio.file.Paths;
 
 import au.id.foxy.aoc2024.day1.Day1;
 import au.id.foxy.aoc2024.day10.Day10;
+import au.id.foxy.aoc2024.day11.Day11;
 import au.id.foxy.aoc2024.day2.Day2;
 import au.id.foxy.aoc2024.day3.Day3;
 import au.id.foxy.aoc2024.day4.Day4;
@@ -37,38 +38,19 @@ public class Main {
         filePath = Paths.get(filename);
 
         try {
-            switch (args[0]) {
-                case "day1":
-                    day = new Day1(filePath);
-                    break;
-                case "day2":
-                    day = new Day2(filePath);
-                    break;
-                case "day3":
-                    day = new Day3(filePath);
-                    break;
-                case "day4":
-                    day = new Day4(filePath);
-                    break;
-                case "day5":
-                    day = new Day5(filePath);
-                    break;
-                case "day6":
-                    day = new Day6(filePath);
-                    break;
-                case "day8":
-                    day = new Day8(filePath);
-                    break;
-                case "day9":
-                    day = new Day9(filePath);
-                    break;
-                case "day10":
-                    day = new Day10(filePath);
-                    break;
-                default:
-                    System.err.println("ERROR: No handler for " + args[0]);
-                    System.exit(1);
-            }
+            day = switch (args[0]) {
+                case "day1" -> new Day1(filePath);
+                case "day2" -> new Day2(filePath);
+                case "day3" -> new Day3(filePath);
+                case "day4" -> new Day4(filePath);
+                case "day5" -> new Day5(filePath);
+                case "day6" -> new Day6(filePath);
+                case "day8" -> new Day8(filePath);
+                case "day9" -> new Day9(filePath);
+                case "day10" -> new Day10(filePath);
+                case "day11" -> new Day11(filePath);
+                default -> throw new IllegalStateException("No handler for " + args[0]);
+            };
 
             var part1 = day.part1();
             var part2 = day.part2();
