@@ -69,8 +69,6 @@ public class Day10 implements AdventOfCode {
         return ratings;
     }
 
-
-
     public AdventOfCodePart part1() {
         var part = new AdventOfCodePart();
         part.setOutput(String.valueOf(findTrailheadScores()));
