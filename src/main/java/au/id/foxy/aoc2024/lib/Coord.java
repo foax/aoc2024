@@ -1,5 +1,7 @@
 package au.id.foxy.aoc2024.lib;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Coord {
@@ -43,5 +45,16 @@ public class Coord {
     @Override
     public int hashCode() {
         return Objects.hash(x, y);
+    }
+    
+    public List<Coord> getNeighbours(boolean countDiagonals) {
+        List<Coord> neighbours = new ArrayList<>();
+        for (var nextCoord : List.of(new Coord(0, -1), new Coord(1, -1), new Coord(1, 0), new Coord(1, 1), new Coord(0, 1), new Coord(-1, 1), new Coord(-1, 0), new Coord(-1, -1))) {
+            if (!countDiagonals && Math.abs(nextCoord.getX()) == Math.abs(nextCoord.getY())) {
+                continue;
+            }
+            neighbours.add(this.add(nextCoord));
+        }
+        return neighbours;
     }
 }
