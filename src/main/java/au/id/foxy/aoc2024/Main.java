@@ -10,6 +10,7 @@ import au.id.foxy.aoc2024.day3.Day3;
 import au.id.foxy.aoc2024.day4.Day4;
 import au.id.foxy.aoc2024.day5.Day5;
 import au.id.foxy.aoc2024.day6.Day6;
+import au.id.foxy.aoc2024.day7.Day7;
 import au.id.foxy.aoc2024.day8.Day8;
 import au.id.foxy.aoc2024.day9.Day9;
 import au.id.foxy.aoc2024.day10.Day10;
@@ -46,6 +47,7 @@ public class Main {
                 case "day4" -> new Day4(filePath);
                 case "day5" -> new Day5(filePath);
                 case "day6" -> new Day6(filePath);
+                case "day7" -> new Day7(filePath);
                 case "day8" -> new Day8(filePath);
                 case "day9" -> new Day9(filePath);
                 case "day10" -> new Day10(filePath);
