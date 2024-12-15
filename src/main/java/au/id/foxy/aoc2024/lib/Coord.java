@@ -29,6 +29,14 @@ public class Coord {
         return new Coord(this.getX() - a.getX(), this.getY() - a.getY());
     }
 
+    public Coord add(Vector a) {
+        return new Coord(this.getX() + a.direction().getX() * a.magnitude(), this.getY() + a.direction().getY() * a.magnitude());
+    }
+
+    public Coord subtract(Vector a) {
+        return new Coord(this.getX() - a.direction().getX() * a.magnitude(), this.getY() - a.direction().getY() * a.magnitude());
+    }
+
     @Override
     public String toString() {
         return "Coord{" + x + "," + y + "}";
