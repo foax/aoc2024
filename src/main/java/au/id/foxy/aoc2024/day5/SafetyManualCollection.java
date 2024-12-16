@@ -13,18 +13,19 @@ public class SafetyManualCollection {
         for (String line : lines) {
             if (Pattern.matches("^\\d+\\|\\d+$", line))
                 pageRules.add(line);
+            else if (line.equals(""))
+                safetyManualRules = new SafetyManualRules(pageRules);
             else if (Pattern.matches("^(\\d+,)*\\d+$", line)) {
-                safetyManuals.add(new SafetyManual(line));
+                safetyManuals.add(new SafetyManual(line, safetyManualRules));
             }
         }
-        safetyManualRules = new SafetyManualRules(pageRules);
     }
 
     public int checkPageOrdering() {
         int middlePageSum = 0;
         for (var s : safetyManuals) {
-            if (s.checkPageOrder(safetyManualRules))
-                middlePageSum += s.getMiddlePage();
+            if (s.checkPageOrder())
+                middlePageSum += s.getMiddlePage().pageNum();
         }
         return middlePageSum;
     }
@@ -32,16 +33,11 @@ public class SafetyManualCollection {
     public int orderIncorrectPages() {
         int middlePageSum = 0;
         for (var s : safetyManuals) {
-            if (!s.checkPageOrder(safetyManualRules)) {
-                s.sortPages(safetyManualRules);
-                middlePageSum += s.getMiddlePage();
+            if (!s.checkPageOrder()) {
+                s.sortPages();
+                middlePageSum += s.getMiddlePage().pageNum();
             }
         }
         return middlePageSum;
     }
-
-//     @Override
-//     public String toString() {
-//         return "SafetyManualCollection{safetyManuals = " + safetyManuals.stream().map(SafetyManual::toString).collect(Collectors.joining(",")) + "; safetyManualRules = "+ safetyManualRules.stream().map(SafetyManualRule::toString).collect(Collectors.joining(",")) + "}";
-//     }
 }

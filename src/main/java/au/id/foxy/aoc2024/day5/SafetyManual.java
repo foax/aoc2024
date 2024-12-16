@@ -1,51 +1,31 @@
 package au.id.foxy.aoc2024.day5;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class SafetyManual {
-    private List<Integer> pageList;
+    private List<SafetyManualPage> pageList;
 
-    public SafetyManual(String pageString) {
-        this.pageList = Arrays.stream(pageString.split(",")).map(Integer::parseInt).collect(Collectors.toList());
+    public SafetyManual(String pageString, SafetyManualRules rules) {
+        this.pageList = Arrays.stream(pageString.split(",")).map(Integer::parseInt).map(x -> new SafetyManualPage(x, rules)).collect(Collectors.toList());
     }
 
-    public int getMiddlePage() {
+    public SafetyManualPage getMiddlePage() {
         return this.pageList.get(this.pageList.size() / 2);
     }
 
-    public boolean checkPageOrder(SafetyManualRules rules) {
+    public boolean checkPageOrder() {
         for (int i = 0; i < this.pageList.size() - 1; i++) {
-            for (int j = i+1; j < this.pageList.size(); j++) {
-                if (!rules.checkPageLessThan(this.pageList.get(i), this.pageList.get(j)))
-                    return false;
-            }
+            int j = i+1;
+            if (pageList.get(i).compareTo(pageList.get(j)) >= 0)
+                return false;
         }
         return true;
     }
 
-    public void sortPages(SafetyManualRules rules) {
-        boolean swapped = false;
-        // System.out.println(this.pageList);
-        do {
-            swapped = false;
-            for (int i = 0; i < this.pageList.size() - 1; i++) {
-                    int j = i + 1;
-                    if (!rules.checkPageLessThan(this.pageList.get(i), this.pageList.get(j))) {
-                        int k = this.pageList.get(j);
-                        this.pageList.set(j, this.pageList.get(i));
-                        this.pageList.set(i, k);
-                        swapped = true;
-                    }
-                }
-            }
-        while (swapped);
+    public void sortPages() {
+        Collections.sort(pageList);
     }
-
-
-    // @Override
-    // public String toString() {
-    //     return "SafetyManual{" + pageList.stream().map(String::valueOf).collect(Collectors.joining(",")) + "}";
-    // }
 }
