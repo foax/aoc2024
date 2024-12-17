@@ -54,7 +54,7 @@ public class WordSearch {
     private boolean checkCrossMas(Coord coord) {
         if (this.grid.get(coord) != 'A')
             return false;
-        if (coord.getX() < 1 || coord.getY() < 1 || coord.getY() >= this.grid.getHeight() - 1 || coord.getX() >= this.grid.getWidth() - 1)
+        if (coord.x() < 1 || coord.y() < 1 || coord.y() >= this.grid.getHeight() - 1 || coord.x() >= this.grid.getWidth() - 1)
             return false;
 
         List<Character> letters = Stream.of("NW", "NE", "SW", "SE")

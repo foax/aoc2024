@@ -3,6 +3,7 @@ package au.id.foxy.aoc2024.day8;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.HashSet;
 
 import au.id.foxy.aoc2024.AdventOfCode;
@@ -41,7 +42,7 @@ public class Day8 implements AdventOfCode {
 
         for (var frequency : grid.getUniqueValues()) {
             if (frequency == '.') continue;
-            var coords = grid.getCoordsOfValue(frequency);
+            var coords = new ArrayList<>(grid.getCoordsOfValue(frequency));
             for (int x = 0; x < coords.size(); x++) {
                 for (int y = 0; y < coords.size(); y++) {
                     if (x == y) continue;
@@ -62,7 +63,7 @@ public class Day8 implements AdventOfCode {
 
         for (var frequency : grid.getUniqueValues()) {
             if (frequency == '.') continue;
-            var coords = grid.getCoordsOfValue(frequency);
+            var coords = new ArrayList<>(grid.getCoordsOfValue(frequency));
             for (int x = 0; x < coords.size(); x++) {
                 if (coords.size() > 1) {
                     antinodes.add(coords.get(x));

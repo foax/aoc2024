@@ -20,7 +20,7 @@ public class Direction {
 
     public Direction(String dir) {
         if (!DIRECTION_TO_VECTOR_MAP.containsKey(dir)) {
-            throw new java.lang.IllegalArgumentException("dir must be one of %s".formatted(DIRECTION_TO_VECTOR_MAP.keySet().stream().collect(Collectors.joining(", "))));
+            throw new java.lang.IllegalArgumentException("dir must be one of %s".formatted(DIRECTIONS.stream().collect(Collectors.joining(", "))));
         }
         this.direction = dir;
     }
@@ -38,12 +38,14 @@ public class Direction {
         int increment = diagonals ? 1 : 2;
         if (!clockwise)
             increment *= -1;
+        if (increment < 0)
+            increment = DIRECTIONS.size() + increment;
         return new Direction(DIRECTIONS.get((pos + increment) % DIRECTIONS.size()));
     }
 
     @Override
     public String toString() {
-        return "Direction{%s (%s)}".formatted(this.direction, this.getDir());
+        return "Direction{%s}".formatted(this.direction);
     }
 
     @Override

@@ -14,7 +14,7 @@ public class Grid<T> implements Iterable<T> {
     private final int width;
     private final int height;
     private Set<T> uniqueValues;
-    private Map<T, List<Coord>> valueCoord;
+    private Map<T, Set<Coord>> valueCoord;
 
     public Grid(int width, int height) {
         this.width = width;
@@ -40,14 +40,23 @@ public class Grid<T> implements Iterable<T> {
     }
 
     public T get(Coord coord) {
-        return grid.get(coord.getY()).get(coord.getX());
+        return grid.get(coord.y()).get(coord.x());
     }
 
     public void set(Coord coord, T value) {
-        this.grid.get(coord.getY()).set(coord.getX(), value);
+        T oldValue = this.grid.get(coord.y()).get(coord.x());
+        if (oldValue != null) {
+            if (this.valueCoord.get(oldValue).size() == 1) {
+                this.uniqueValues.remove(oldValue);
+                this.valueCoord.remove(oldValue);
+            } else {
+                this.valueCoord.get(oldValue).remove(coord);
+            }
+        }
+        this.grid.get(coord.y()).set(coord.x(), value);
         this.uniqueValues.add(value);
         if (!this.valueCoord.containsKey(value))
-            this.valueCoord.put(value, new ArrayList<>());
+            this.valueCoord.put(value, new HashSet<>());
         this.valueCoord.get(value).add(coord);
     }
 
@@ -63,12 +72,12 @@ public class Grid<T> implements Iterable<T> {
         return this.uniqueValues;
     }
 
-    public List<Coord> getCoordsOfValue(T value) {
+    public Set<Coord> getCoordsOfValue(T value) {
         return this.valueCoord.getOrDefault(value, null);
     }
 
     public boolean inBounds(Coord c) {
-        return c.getX() >= 0 && c.getX() < this.width && c.getY() >= 0 && c.getY() < this.height; 
+        return c.x() >= 0 && c.x() < this.width && c.y() >= 0 && c.y() < this.height;
     }
 
     private class CoordIterator implements Iterator<Coord> {
@@ -97,7 +106,7 @@ public class Grid<T> implements Iterable<T> {
     }
 
     private class GridIterator implements Iterator<T> {
-        private Iterator<Coord> coord = new CoordIterator();        
+        private Iterator<Coord> coord = new CoordIterator();
 
         @Override
         public boolean hasNext() {
@@ -109,7 +118,7 @@ public class Grid<T> implements Iterable<T> {
             return Grid.this.get(coord.next());
         }
     }
-    
+
     @Override
     public Iterator<T> iterator() {
         return new GridIterator();

@@ -16,17 +16,17 @@ public class Coords {
         }
 
         for (var coord : coords) {
-            if (minX == null || coord.getX() < minX) {
-                minX = coord.getX();
+            if (minX == null || coord.x() < minX) {
+                minX = coord.x();
             }
-            if (minY == null || coord.getY() < minY) {
-                minY = coord.getY();
+            if (minY == null || coord.y() < minY) {
+                minY = coord.y();
             }
-            if (maxX == null || coord.getX() > maxX) {
-                maxX = coord.getX();
+            if (maxX == null || coord.x() > maxX) {
+                maxX = coord.x();
             }
-            if (maxY == null || coord.getY() > maxY) {
-                maxY = coord.getY();
+            if (maxY == null || coord.y() > maxY) {
+                maxY = coord.y();
             }
         }
 
