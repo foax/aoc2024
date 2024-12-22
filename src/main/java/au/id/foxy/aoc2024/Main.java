@@ -18,6 +18,7 @@ import au.id.foxy.aoc2024.day11.Day11;
 import au.id.foxy.aoc2024.day12.Day12;
 import au.id.foxy.aoc2024.day13.Day13;
 import au.id.foxy.aoc2024.day14.Day14;
+import au.id.foxy.aoc2024.day15.Day15;
 
 public class Main {
     private static double ms(long duration) {
@@ -57,6 +58,7 @@ public class Main {
                 case "day12" -> new Day12(filePath);
                 case "day13" -> new Day13(filePath);
                 case "day14" -> new Day14(filePath);
+                case "day15" -> new Day15(filePath);
                 default -> throw new IllegalStateException("No handler for " + args[0]);
             };
 
